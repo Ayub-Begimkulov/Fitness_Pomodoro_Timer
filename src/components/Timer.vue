@@ -56,7 +56,7 @@
       return {
         minutesLeft: 0,
         secondsLeft: 0,
-        isWorking: false,
+        isWorking: true,
         interval: ''
       }
     },
@@ -98,11 +98,11 @@
         if (this.minutesLeft === 0 && this.secondsLeft === 0 && this.cycles > 0 && this.isWorking) {
           this.isWorking = !this.isWorking
           this.minutesLeft = this.restMinutes
-          this.startTimer()
+          this.$refs.circle.setAttribute('stroke-dasharray', `${ this.circumference } 0`)
         } else if (this.minutesLeft === 0 && this.secondsLeft === 0 && this.cycles > 0 && !this.isWorking) {
           this.isWorking = !this.isWorking
           this.minutesLeft = this.workMinutes
-          this.startTimer()
+          this.$refs.circle.setAttribute('stroke-dasharray', `${ this.circumference } 0`)
         }
       }
     }
