@@ -1,14 +1,14 @@
 <template>
   <div class="absolute w-screen h-screen" :class="isWorking ? 'gradient-red' : 'gradient-blue'">
 
-    <button @click="close" class="absolute focus:outline-none top-0 right-0 m-4 z-10">
+    <button @click="close" class="absolute top-0 right-0 m-4 z-10">
       <img class="w-4 h-4" src="../assets/img/close.svg" alt="close">
     </button>
 
     <button
       v-show="!isWorking"
       @click="showExercisesModal = true"
-      class="absolute focus:outline-none top-0 left-0 m-4 z-10"
+      class="absolute top-0 left-0 m-4 z-10"
     >
       <img class="w-5 h-5" src="../assets/img/muscles.svg" alt="close">
     </button>
@@ -73,8 +73,8 @@
 
     <div class="flex justify-center items-center" style="height: 30%">
 
-      <button v-show="!interval" class="bg-transparent flex justify-center items-center text-white focus:outline-none border border-white rounded-full w-16 h-16 p-4 " @click="startTimer">Start</button>
-      <button v-show="interval" class="bg-transparent flex justify-center items-center text-white focus:outline-none border border-white rounded-full w-16 h-16 p-4 " @click="pauseTimer">Stop</button>
+      <button v-show="!interval" class="bg-transparent flex justify-center items-center text-white border border-white rounded-full w-16 h-16 p-4 " @click="startTimer">Start</button>
+      <button v-show="interval" class="bg-transparent flex justify-center items-center text-white border border-white rounded-full w-16 h-16 p-4 " @click="pauseTimer">Stop</button>
 
     </div>
 
