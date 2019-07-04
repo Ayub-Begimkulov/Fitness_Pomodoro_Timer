@@ -1,5 +1,38 @@
 <template>
   <div class="absolute w-screen h-screen" :class="isWorking ? 'gradient-red' : 'gradient-blue'">
+
+    <button @click="close" class="absolute focus:outline-none top-0 right-0 m-4 z-10">
+      <img class="w-4 h-4" src="../assets/img/close.svg" alt="close">
+    </button>
+
+    <button
+      v-show="!isWorking"
+      @click="showExercisesModal = true"
+      class="absolute focus:outline-none top-0 left-0 m-4 z-10"
+    >
+      <img class="w-5 h-5" src="../assets/img/muscles.svg" alt="close">
+    </button>
+
+    <div
+      v-show="showExercisesModal"
+      @click="showExercisesModal = false"
+      class="bg-black opacity-50 absolute w-full h-full z-20"
+    ></div>
+
+    <div v-show="showExercisesModal" class="absolute flex items-center justify-center w-full h-full">
+      <div class="bg-white rounded w-3/4 max-w-xs p-4 z-30">
+
+        <h3 class="text-center text-lg font-bold mb-3">It's time to warmp up. That's your exercises.</h3>
+
+        <div
+          v-for="(exercise, index) in randomExercises"
+          :key="index"
+          class="p-1 text"
+        >{{ exercise }}</div>
+
+      </div>
+    </div>
+
     <div style="height: 70%">
 
       <svg class="w-full h-full">
@@ -41,7 +74,7 @@
     <div class="flex justify-center items-center" style="height: 30%">
 
       <button v-show="!interval" class="bg-transparent flex justify-center items-center text-white focus:outline-none border border-white rounded-full w-16 h-16 p-4 " @click="startTimer">Start</button>
-      <button v-show="interval" class="bg-transparent flex justify-center items-center text-white focus:outline-none border border-white rounded-full w-16 h-16 p-4 " @click="stopTimer">Stop</button>
+      <button v-show="interval" class="bg-transparent flex justify-center items-center text-white focus:outline-none border border-white rounded-full w-16 h-16 p-4 " @click="pauseTimer">Stop</button>
 
     </div>
 
@@ -50,14 +83,18 @@
 
 <script>
   export default {
-    props: ['workMinutes', 'restMinutes', 'cycles'],
+    props: ['workMinutes', 'restMinutes', 'workCycles'],
 
     data() {
       return {
-        minutesLeft: 0,
+        minutesLeft: this.workMinutes,
+        cycles: this.workCycles,
         secondsLeft: 0,
         isWorking: true,
-        interval: ''
+        interval: '',
+        allExercises: ['push up', 'sit up', 'squat', 'plank', 'jumping jacks', 'high knees'],
+        randomExercises: [],
+        showExercisesModal: false
       }
     },
 
@@ -68,7 +105,6 @@
     },
 
     mounted() {
-      this.minutesLeft = this.workMinutes
       this.startTimer()
     },
 
@@ -87,23 +123,50 @@
             this.minutesLeft--
             this.secondsLeft = 59
           } else {
-            this.stopTimer()
+            this.pauseTimer()
+            if (this.isWorking && this.cycles > 1) {
+              this.cycles--
+              this.resetTimer()
+              this.setRandomExercises()
+              this.showExercisesModal = true
+            } else if (!this.isWorking) {
+              this.resetTimer()
+            } else this.close()
           }
         }, 1000)
       },
 
-      stopTimer() {
+      pauseTimer() {
         clearInterval(this.interval)
         this.interval = ''
-        if (this.minutesLeft === 0 && this.secondsLeft === 0 && this.cycles > 0 && this.isWorking) {
-          this.isWorking = !this.isWorking
-          this.minutesLeft = this.restMinutes
-          this.$refs.circle.setAttribute('stroke-dasharray', `${ this.circumference } 0`)
-        } else if (this.minutesLeft === 0 && this.secondsLeft === 0 && this.cycles > 0 && !this.isWorking) {
-          this.isWorking = !this.isWorking
-          this.minutesLeft = this.workMinutes
-          this.$refs.circle.setAttribute('stroke-dasharray', `${ this.circumference } 0`)
+      },
+
+      resetTimer() {
+        this.isWorking = !this.isWorking
+        this.minutesLeft = this.isWorking ? this.restMinutes : this.workMinutes
+        this.$refs.circle.setAttribute('stroke-dasharray', `${ this.circumference } 0`)
+      },
+
+      setRandomExercises() {
+        let randomExercises = []
+
+        while (randomExercises.length < 3) {
+          let e = this.allExercises[this.getRandomInt(0, this.allExercises.length-1)]
+          if (randomExercises.indexOf(e) === -1) randomExercises.push(e)
         }
+
+        this.randomExercises = randomExercises
+      },
+
+      getRandomInt(min, max) {
+        min = Math.ceil(min)
+        max = Math.floor(max)
+        return Math.floor(Math.random() * (max - min + 1)) + min
+      },
+
+      close() {
+        if (this.interval) clearInterval(this.interval)
+        this.$emit('close')
       }
     }
   }
