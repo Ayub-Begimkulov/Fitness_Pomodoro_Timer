@@ -1,50 +1,31 @@
 <template>
   <div id="app" class="h-screen">
-    <div style="height: 80%">
+    <timer
+      v-if="opend"
+      @close="opend = false"
+      :workMinutes="workMinutes"
+      :restMinutes="restMinutes"
+      :workCycles="cycles"
+    ></timer>
 
-      <svg class="w-full h-full">
-        <circle
-          style="transform-origin: 50% 50%; transform: rotate3d(0, 1, 0, 180deg) rotate(-90deg) ;"
-          ref="circle"
-          cx="50%"
-          cy="50%"
-          r="200"
-          stroke="white"
-          stroke-width="5"
-          stroke-linecap="round"
-          fill="transparent"
-        ></circle>
-
-        <text
-          v-if="seconds > 9"
-          x="50%"
-          y="50%"
-          dominant-baseline="middle"
-          text-anchor="middle"
-          fill="white"
-          class="text-6xl"
-        >{{ minutes }} : {{ seconds }}</text>
-
-        <text
-          v-else
-          x="50%"
-          y="50%"
-          dominant-baseline="middle"
-          text-anchor="middle"
-          fill="white"
-          class="text-6xl"
-        >{{ minutes }} : 0{{ seconds }}</text>
-      </svg>
-
+    <div class="mb-4 shadow-md">
+      <h1 class="text-xl font-bold p-3">Fitness Timer</h1>
     </div>
 
     <div class="flex flex-col items-center">
+      <h2 class="font-bold text-lg">Working Time</h2>
 
-      <input v-model="minutes" class="my-3 pb-2 border-b focus:outline-none border-indigo-600" type="text" placeholder="minutes">
-      <input v-model="seconds" class="my-3 pb-2 border-b focus:outline-none border-indigo-600" type="text" placeholder="seconds">
+      <input class="border p-1 my-4 rounded" type="text" v-model="workMinutes">
 
-      <button v-show="!interval" class="bg-blue-600 rounded px-2 py-1 m-2" @click="startTimer">Start Timer</button>
-      <button v-show="interval" class="bg-red-600 rounded px-2 py-1 m-2" @click="stopTimer">Stop Timer</button>
+      <h2 class="font-bold text-lg">Rest Time</h2>
+
+      <input class="border p-1 my-4 rounded" type="text" v-model="restMinutes">
+
+      <h2 class="font-bold text-lg">Cycles</h2>
+
+      <input class="border p-1 my-4 rounded" type="text" v-model="cycles">
+
+      <button class="bg-blue-600 text-white font-medium px-4 py-1 rounded" @click="opend = true">Start</button>
 
     </div>
 
@@ -52,41 +33,21 @@
 </template>
 
 <script>
+  import Timer from './components/Timer'
+
   export default {
     name: 'App',
 
-    data() {
-      return {
-        minutes: 1,
-        seconds: 0,
-        interval: '',
-        time: ''
-      }
+    components: {
+      Timer
     },
 
-    methods: {
-      startTimer() {
-        let circle = this.$refs.circle
-        let circumference = 2 * Math.PI * circle.getAttribute('r')
-        let time = this.seconds + this.minutes * 60
-
-        this.interval =  setInterval(() => {
-          let percents = (this.seconds + this.minutes * 60) / time
-          circle.setAttribute('stroke-dasharray' ,`${ percents * circumference } ${ (1 - percents) * circumference }`)
-          if (this.seconds > 0) {
-            this.seconds--
-          } else if (this.minutes > 0) {
-            this.minutes--
-            this.seconds = 59
-          } else {
-            this.stopTimer()
-          }
-        }, 1000)
-      },
-
-      stopTimer() {
-        clearInterval(this.interval)
-        this.interval = ''
+    data() {
+      return {
+        workMinutes: 1,
+        restMinutes: 1,
+        cycles: 5,
+        opend: false
       }
     }
   }
