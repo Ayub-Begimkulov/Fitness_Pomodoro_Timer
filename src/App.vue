@@ -34,6 +34,7 @@
 
 <script>
   import Timer from './components/Timer'
+  import './assets/css/main.css'
 
   export default {
     name: 'App',
