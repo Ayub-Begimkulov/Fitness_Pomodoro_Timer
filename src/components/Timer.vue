@@ -143,7 +143,7 @@
 
       resetTimer() {
         this.isWorking = !this.isWorking
-        this.minutesLeft = this.isWorking ? this.restMinutes : this.workMinutes
+        this.minutesLeft = this.isWorking ? this.workMinutes : this.restMinutes
         this.$refs.circle.setAttribute('stroke-dasharray', `${ this.circumference } 0`)
       },
 
