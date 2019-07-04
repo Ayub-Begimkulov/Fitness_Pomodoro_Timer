@@ -8,22 +8,31 @@
       :workCycles="cycles"
     ></timer>
 
-    <div class="mb-4 shadow-md">
-      <h1 class="text-xl font-bold p-3">Fitness Timer</h1>
-    </div>
+    <div class="flex flex-col justify-center items-center h-screen">
 
-    <div class="flex flex-col items-center">
-      <h2 class="font-bold text-lg">Working Time</h2>
+      <span>Working minutes </span>
 
-      <input class="border p-1 my-4 rounded" type="text" v-model="workMinutes">
+      <div class="flex justify-center items-center mb-3">
+        <button @click="workMinutes--" class="bg-red-600 flex justify-center items-center rounded w-10 h-10">-</button>
+        <input class="bg-transparent text-center text-lg font-bold w-24 p-1 mx-2 my-4 rounded" type="number" v-model="workMinutes">
+        <button @click="workMinutes++" class="bg-blue-600 flex justify-center items-center rounded w-10 h-10">+</button>
+      </div>
 
-      <h2 class="font-bold text-lg">Rest Time</h2>
+      <span>Rest minutes </span>
 
-      <input class="border p-1 my-4 rounded" type="text" v-model="restMinutes">
+      <div class="flex justify-center items-center mb-3">
+        <button @click="restMinutes--" class="bg-red-600 flex justify-center items-center rounded w-10 h-10">-</button>
+        <input class="bg-transparent text-center text-lg font-bold w-24 p-1 mx-2 my-4 rounded" type="number" v-model="restMinutes">
+        <button @click="restMinutes++" class="bg-blue-600 flex justify-center items-center rounded w-10 h-10">+</button>
+      </div>
 
-      <h2 class="font-bold text-lg">Cycles</h2>
+      <span>Cycles </span>
 
-      <input class="border p-1 my-4 rounded" type="text" v-model="cycles">
+      <div class="flex justify-center items-center mb-3">
+        <button @click="cycles--" class="bg-red-600 flex justify-center items-center rounded w-10 h-10">-</button>
+        <input class="bg-transparent text-center text-lg font-bold w-24 p-1 mx-2 my-4 rounded" type="number" v-model="cycles">
+        <button @click="cycles++" class="bg-blue-600 flex justify-center items-center rounded w-10 h-10">+</button>
+      </div>
 
       <button class="bg-blue-600 text-white font-medium px-4 py-1 rounded" @click="opend = true">Start</button>
 
@@ -45,8 +54,8 @@
 
     data() {
       return {
-        workMinutes: 1,
-        restMinutes: 1,
+        workMinutes: 25,
+        restMinutes: 5,
         cycles: 5,
         opend: false
       }
