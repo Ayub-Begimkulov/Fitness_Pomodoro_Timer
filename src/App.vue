@@ -8,30 +8,30 @@
       :workCycles="cycles"
     ></timer>
 
-    <div class="flex flex-col justify-center items-center h-screen">
+    <div text-white font-bold class="flex flex-col justify-center items-center h-screen">
 
       <span>Working minutes </span>
 
       <div class="flex justify-center items-center mb-3">
-        <button @click="workMinutes--" class="bg-red-600 flex justify-center items-center rounded w-10 h-10">-</button>
+        <button @click="workMinutes--" class="bg-red-600 text-white font-bold flex justify-center items-center rounded w-10 h-10">-</button>
         <input class="bg-transparent text-center text-lg font-bold w-24 p-1 mx-2 my-4 rounded" type="number" v-model="workMinutes">
-        <button @click="workMinutes++" class="bg-blue-600 flex justify-center items-center rounded w-10 h-10">+</button>
+        <button @click="workMinutes++" class="bg-blue-600 text-white font-bold flex justify-center items-center rounded w-10 h-10">+</button>
       </div>
 
       <span>Rest minutes </span>
 
       <div class="flex justify-center items-center mb-3">
-        <button @click="restMinutes--" class="bg-red-600 flex justify-center items-center rounded w-10 h-10">-</button>
+        <button @click="restMinutes--" class="bg-red-600 text-white font-bold flex justify-center items-center rounded w-10 h-10">-</button>
         <input class="bg-transparent text-center text-lg font-bold w-24 p-1 mx-2 my-4 rounded" type="number" v-model="restMinutes">
-        <button @click="restMinutes++" class="bg-blue-600 flex justify-center items-center rounded w-10 h-10">+</button>
+        <button @click="restMinutes++" class="bg-blue-600 text-white font-bold flex justify-center items-center rounded w-10 h-10">+</button>
       </div>
 
       <span>Cycles </span>
 
       <div class="flex justify-center items-center mb-3">
-        <button @click="cycles--" class="bg-red-600 flex justify-center items-center rounded w-10 h-10">-</button>
+        <button @click="cycles--" class="bg-red-600 text-white font-bold flex justify-center items-center rounded w-10 h-10">-</button>
         <input class="bg-transparent text-center text-lg font-bold w-24 p-1 mx-2 my-4 rounded" type="number" v-model="cycles">
-        <button @click="cycles++" class="bg-blue-600 flex justify-center items-center rounded w-10 h-10">+</button>
+        <button @click="cycles++" class="bg-blue-600 text-white font-bold flex justify-center items-center rounded w-10 h-10">+</button>
       </div>
 
       <button class="bg-blue-600 text-white font-medium px-4 py-1 rounded" @click="opend = true">Start</button>
