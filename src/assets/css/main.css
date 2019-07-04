@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+button:focus {
+	@apply .outline-none
+}
+
+.gradient-blue {
+  background-color: #045DE9;
+  background-image: linear-gradient(to bottom, #009FFD, #045DE9);
+}
+
+.gradient-red {
+  background-image: linear-gradient(to top, #EB3449, #F45C43)
+}
