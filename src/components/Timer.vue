@@ -13,25 +13,11 @@
       <img class="w-5 h-5" src="../assets/img/muscles.svg" alt="close">
     </button>
 
-    <div
+    <exercise-modal
       v-show="showExercisesModal"
-      @click="showExercisesModal = false"
-      class="bg-black opacity-50 absolute w-full h-full z-20"
-    ></div>
-
-    <div v-show="showExercisesModal" class="absolute flex items-center justify-center w-full h-full">
-      <div class="bg-white rounded w-3/4 max-w-xs p-4 z-30">
-
-        <h3 class="text-center text-lg font-bold mb-3">It's time to warmp up. That's your exercises.</h3>
-
-        <div
-          v-for="(exercise, index) in randomExercises"
-          :key="index"
-          class="p-1 text"
-        >{{ exercise }}</div>
-
-      </div>
-    </div>
+      :randomExercises="randomExercises"
+      @close="showExercisesModal = false"
+    ></exercise-modal>
 
     <div style="height: 70%">
 
@@ -82,8 +68,14 @@
 </template>
 
 <script>
+  import ExerciseModal from './ExerciseModal'
+
   export default {
     props: ['workMinutes', 'restMinutes', 'workCycles'],
+
+    components: {
+      ExerciseModal
+    },
 
     data() {
       return {
@@ -92,7 +84,7 @@
         secondsLeft: 0,
         isWorking: true,
         interval: '',
-        allExercises: ['push up', 'sit up', 'squat', 'plank', 'jumping jacks', 'high knees'],
+        allExercises: ['push up', 'sit up', 'squat', 'plank', 'jumping jacks', 'high knees', 'plank to push up', 'inchworm', 'prone walkout', 'wall sit', 'burpees', 'lunge', 'lunge jump', 'triceps dips', 'diamond push-up', 'flutter kick', 'side plank', 'russian twist', 'shoulder bridge'],
         randomExercises: [],
         showExercisesModal: false
       }
