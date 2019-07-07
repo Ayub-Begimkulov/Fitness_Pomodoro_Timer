@@ -35,32 +35,27 @@
         ></circle>
 
         <text
-          v-if="secondsLeft > 9"
           x="50%"
           y="50%"
           dominant-baseline="middle"
           text-anchor="middle"
           fill="white"
           class="text-6xl"
-        >{{ minutesLeft }} : {{ secondsLeft }}</text>
-
-        <text
-          v-else
-          x="50%"
-          y="50%"
-          dominant-baseline="middle"
-          text-anchor="middle"
-          fill="white"
-          class="text-6xl"
-        >{{ minutesLeft }} : 0{{ secondsLeft }}</text>
+        >
+          <tspan v-if="secondsLeft > 9">{{ minutesLeft }} : {{ secondsLeft }}</tspan>
+          <tspan v-else>{{ minutesLeft }} : 0{{ secondsLeft }}</tspan>
+        </text>
       </svg>
 
     </div>
 
     <div class="flex justify-center items-center" style="height: 30%">
 
-      <button v-show="!interval" class="bg-transparent flex justify-center items-center text-white border border-white rounded-full w-16 h-16 p-4 " @click="startTimer">Start</button>
-      <button v-show="interval" class="bg-transparent flex justify-center items-center text-white border border-white rounded-full w-16 h-16 p-4 " @click="pauseTimer">Stop</button>
+      <button v-show="!interval" class="bg-transparent flex justify-center items-center text-white border border-white rounded-full w-18 h-18" @click="startTimer">
+        <span v-if="(minutesLeft === workMinutes || minutesLeft === restMinutes) && secondsLeft === 0">Start</span>
+        <span v-else>Continue</span>
+      </button>
+      <button v-show="interval" class="bg-transparent flex justify-center items-center text-white border border-white rounded-full w-18 h-18" @click="pauseTimer">Pause</button>
 
     </div>
 
