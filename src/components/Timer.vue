@@ -111,6 +111,8 @@
             this.secondsLeft = 59
           } else {
             this.pauseTimer()
+            let audio = new Audio(require('../assets/audio/notification.mp3'))
+            audio.play()
             if (this.isWorking && this.cycles > 1) {
               this.cycles--
               this.resetTimer()
