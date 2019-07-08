@@ -79,7 +79,7 @@
         secondsLeft: 0,
         isWorking: true,
         interval: '',
-        allExercises: ['push up', 'sit up', 'squat', 'plank', 'jumping jacks', 'high knees', 'plank to push up', 'inchworm', 'prone walkout', 'wall sit', 'burpees', 'lunge', 'lunge jump', 'triceps dips', 'diamond push-up', 'flutter kick', 'side plank', 'russian twist', 'shoulder bridge'],
+        allExercises: ['push up', 'sit up', 'squat', 'plank', 'jumping jacks', 'high knees', 'plank to push up', 'inchworm', 'prone walkout', 'wall sit', 'burpees', 'lunge', 'lunge jump', 'triceps dips', 'diamond push-up', 'flutter kick', 'side plank', 'russian twist', 'shoulder bridge', 'side plank', 'squat thrusts'],
         randomExercises: [],
         showExercisesModal: false
       }
