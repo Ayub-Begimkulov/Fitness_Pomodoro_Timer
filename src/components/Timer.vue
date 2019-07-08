@@ -19,7 +19,7 @@
       @close="showExercisesModal = false"
     ></exercise-modal>
 
-    <div style="height: 70%">
+    <div class="h-7/10">
 
       <svg class="w-full h-full">
         <circle
@@ -49,7 +49,7 @@
 
     </div>
 
-    <div class="flex justify-center items-center" style="height: 30%">
+    <div class="flex justify-center items-center h-3/10">
 
       <button v-show="!interval" class="bg-transparent flex justify-center items-center text-white border border-white rounded-full w-18 h-18" @click="startTimer">
         <span v-if="(minutesLeft === workMinutes || minutesLeft === restMinutes) && secondsLeft === 0">Start</span>
