@@ -92,7 +92,12 @@
     },
 
     mounted() {
+      if (typeof cordova !== 'undefined') cordova.plugins.backgroundMode.enable()
       this.startTimer()
+    },
+
+    beforeDestroy() {
+      if (typeof cordova !== 'undefined') cordova.plugins.backgroundMode.disable()
     },
 
     methods: {
