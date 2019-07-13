@@ -20,7 +20,8 @@
         >-</button>
 
         <input
-          class="bg-transparent text-center text-lg font-bold w-24 p-1 mx-2 my-4 rounded"
+          class="bg-transparent text-center text-lg font-bold border-b w-24 p-1 mx-2 my-4"
+          :class="workMinutes < 1 ? 'border-red-600' : 'border-transparent'"
           type="number"
           v-model="workMinutes"
         >
@@ -41,7 +42,8 @@
         >-</button>
 
         <input
-          class="bg-transparent text-center text-lg font-bold w-24 p-1 mx-2 my-4 rounded"
+          class="bg-transparent text-center text-lg font-bold border-b w-24 p-1 mx-2 my-4"
+          :class="restMinutes < 1 ? 'border-red-600' : 'border-transparent'"
           type="number"
           v-model="restMinutes"
         >
@@ -62,7 +64,8 @@
         >-</button>
 
         <input
-          class="bg-transparent text-center text-lg font-bold w-24 p-1 mx-2 my-4 rounded"
+          class="bg-transparent text-center text-lg font-bold border-b w-24 p-1 mx-2 my-4"
+          :class="cycles < 1 ? 'border-red-600' : 'border-transparent'"
           type="number"
           v-model="cycles"
         >
@@ -75,6 +78,7 @@
 
       <button
         @click="opend = true"
+        :disabled="workMinutes < 1 || restMinutes < 1 || cycles < 1"
         class="bg-blue-600 text-white font-medium px-4 py-1 rounded"
       >Start</button>
 
@@ -101,6 +105,6 @@
         cycles: 5,
         opend: false
       }
-    }
+    },
   }
 </script>
