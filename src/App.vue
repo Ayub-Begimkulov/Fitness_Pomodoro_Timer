@@ -3,53 +3,53 @@
     <timer
       v-if="opend"
       @close="opend = false"
-      :workMinutes="workMinutes"
-      :restMinutes="restMinutes"
+      :focusTime="focusTime"
+      :breakTime="breakTime"
       :workCycles="cycles"
     ></timer>
 
     <div class="flex flex-col justify-center items-center h-screen">
 
-      <span class="font-medium">Working minutes</span>
+      <span class="font-medium">Focus Time</span>
 
       <div class="flex justify-center items-center mb-3">
         <button
-          @click="workMinutes--"
-          :disabled="workMinutes < 2"
+          @click="focusTime--"
+          :disabled="focusTime < 2"
           class="bg-red-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
         >-</button>
 
         <input
           class="bg-transparent text-center text-lg font-bold border-b w-24 p-1 mx-2 my-4"
-          :class="workMinutes < 1 ? 'border-red-600' : 'border-transparent'"
+          :class="focusTime < 1 ? 'border-red-600' : 'border-transparent'"
           type="number"
-          v-model="workMinutes"
+          v-model="focusTime"
         >
 
         <button
-          @click="workMinutes++"
+          @click="focusTime++"
           class="bg-green-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
         >+</button>
       </div>
 
-      <span class="font-medium">Rest minutes</span>
+      <span class="font-medium">Break Time</span>
 
       <div class="flex justify-center items-center mb-3">
         <button
-          @click="restMinutes--"
-          :disabled="restMinutes < 2"
+          @click="breakTime--"
+          :disabled="breakTime < 2"
           class="bg-red-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
         >-</button>
 
         <input
           class="bg-transparent text-center text-lg font-bold border-b w-24 p-1 mx-2 my-4"
-          :class="restMinutes < 1 ? 'border-red-600' : 'border-transparent'"
+          :class="breakTime < 1 ? 'border-red-600' : 'border-transparent'"
           type="number"
-          v-model="restMinutes"
+          v-model="breakTime"
         >
 
         <button
-          @click="restMinutes++"
+          @click="breakTime++"
           class="bg-green-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
         >+</button>
       </div>
@@ -78,7 +78,7 @@
 
       <button
         @click="opend = true"
-        :disabled="workMinutes < 1 || restMinutes < 1 || cycles < 1"
+        :disabled="focusTime < 1 || breakTime < 1 || cycles < 1"
         class="bg-blue-600 text-white font-medium px-4 py-1 rounded"
       >Start</button>
 
@@ -100,8 +100,8 @@
 
     data() {
       return {
-        workMinutes: 25,
-        restMinutes: 5,
+        focusTime: 25,
+        breakTime: 5,
         cycles: 5,
         opend: false
       }
