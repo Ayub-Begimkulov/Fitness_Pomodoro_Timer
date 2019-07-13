@@ -52,7 +52,7 @@
     <div class="flex justify-center items-center h-3/10">
 
       <button v-show="!interval" class="bg-transparent flex justify-center items-center text-white border border-white rounded-full w-18 h-18" @click="startTimer">
-        <span v-if="(minutesLeft === workMinutes || minutesLeft === restMinutes) && secondsLeft === 0">Start</span>
+        <span v-if="(minutesLeft === focusTime || minutesLeft === breakTime) && secondsLeft === 0">Start</span>
         <span v-else>Continue</span>
       </button>
       <button v-show="interval" class="bg-transparent flex justify-center items-center text-white border border-white rounded-full w-18 h-18" @click="pauseTimer">Pause</button>
@@ -66,7 +66,7 @@
   import ExerciseModal from './ExerciseModal'
 
   export default {
-    props: ['workMinutes', 'restMinutes', 'workCycles'],
+    props: ['focusTime', 'breakTime', 'workCycles'],
 
     components: {
       ExerciseModal
@@ -74,7 +74,7 @@
 
     data() {
       return {
-        minutesLeft: this.workMinutes,
+        minutesLeft: this.focusTime,
         cycles: this.workCycles,
         secondsLeft: 0,
         isWorking: true,
@@ -103,7 +103,7 @@
     methods: {
       startTimer() {
         let circle = this.$refs.circle
-        let time = this.isWorking ? this.workMinutes * 60 : this.restMinutes * 60
+        let time = this.isWorking ? this.focusTime * 60 : this.breakTime * 60
 
         this.interval =  setInterval(() => {
           let percents = (this.secondsLeft + this.minutesLeft * 60) / time
@@ -137,7 +137,7 @@
 
       resetTimer() {
         this.isWorking = !this.isWorking
-        this.minutesLeft = this.isWorking ? this.workMinutes : this.restMinutes
+        this.minutesLeft = this.isWorking ? this.focusTime : this.breakTime
         this.$refs.circle.setAttribute('stroke-dasharray', `${ this.circumference } 0`)
       },
 
