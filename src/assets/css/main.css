@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif
 }
 
 button:focus {
@@ -12,6 +12,16 @@ button:focus {
 
 input:focus {
 	@apply .outline-none
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0
+}
+
+input[type=number] {
+  -moz-appearance:textfield
 }
 
 .gradient-blue {
