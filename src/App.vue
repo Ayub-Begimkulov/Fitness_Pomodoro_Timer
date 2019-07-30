@@ -9,7 +9,6 @@
     ></timer>
 
     <div class="flex flex-col justify-center items-center h-screen">
-
       <span class="font-medium">Focus Time</span>
 
       <div class="flex justify-center items-center mb-3">
@@ -24,7 +23,7 @@
           :class="focusTime < 1 ? 'border-red-600' : 'border-transparent'"
           type="number"
           v-model="focusTime"
-        >
+        />
 
         <button
           @click="focusTime++"
@@ -46,7 +45,7 @@
           :class="breakTime < 1 ? 'border-red-600' : 'border-transparent'"
           type="number"
           v-model="breakTime"
-        >
+        />
 
         <button
           @click="breakTime++"
@@ -68,7 +67,7 @@
           :class="cycles < 1 ? 'border-red-600' : 'border-transparent'"
           type="number"
           v-model="cycles"
-        >
+        />
 
         <button
           @click="cycles++"
@@ -81,30 +80,28 @@
         :disabled="focusTime < 1 || breakTime < 1 || cycles < 1"
         class="bg-blue-600 text-white font-medium px-4 py-1 rounded"
       >Start</button>
-
     </div>
-
   </div>
 </template>
 
 <script>
-  import Timer from './components/Timer'
-  import './assets/css/main.css'
+import Timer from "./components/Timer";
+import "./assets/css/main.css";
 
-  export default {
-    name: 'App',
+export default {
+  name: "App",
 
-    components: {
-      Timer
-    },
+  components: {
+    Timer
+  },
 
-    data() {
-      return {
-        focusTime: 25,
-        breakTime: 5,
-        cycles: 5,
-        opend: false
-      }
-    },
+  data() {
+    return {
+      focusTime: 25,
+      breakTime: 5,
+      cycles: 5,
+      opend: false
+    };
   }
+};
 </script>

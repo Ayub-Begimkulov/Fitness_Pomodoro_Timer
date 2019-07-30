@@ -3,32 +3,32 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Roboto', sans-serif
+  font-family: 'Roboto', sans-serif;
 }
 
 button:focus {
-	@apply .outline-none
+  @apply .outline-none;
 }
 
 input:focus {
-	@apply .outline-none
+  @apply .outline-none;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0
+  margin: 0;
 }
 
-input[type=number] {
-  -moz-appearance:textfield
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 
 .gradient-blue {
-  background-color: #045DE9;
-  background-image: linear-gradient(to bottom, #009FFD, #045DE9);
+  background-color: #045de9;
+  background-image: linear-gradient(to bottom, #009ffd, #045de9);
 }
 
 .gradient-red {
-  background-image: linear-gradient(to top, #EB3449, #F45C43)
+  background-image: linear-gradient(to top, #eb3449, #f45c43);
 }
