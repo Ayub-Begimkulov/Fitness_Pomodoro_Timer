@@ -170,7 +170,7 @@ export default {
     },
 
     setRandomExercises() {
-      let randomExercises = [];
+      const randomExercises = [];
 
       while (randomExercises.length < 3) {
         let e = this.allExercises[
