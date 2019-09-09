@@ -12,11 +12,7 @@
       <span class="font-medium">Focus Time</span>
 
       <div class="flex justify-center items-center mb-3">
-        <button
-          @click="focusTime--"
-          :disabled="focusTime < 2"
-          class="bg-red-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
-        >-</button>
+        <ChangeValueButton @click="focusTime--" :isIncrease="false" :disabled="focusTime < 2" />
 
         <input
           class="bg-transparent text-center text-lg font-bold border-b w-24 p-1 mx-2 my-4"
@@ -25,20 +21,13 @@
           v-model="focusTime"
         />
 
-        <button
-          @click="focusTime++"
-          class="bg-green-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
-        >+</button>
+        <ChangeValueButton @click="focusTime++" :isIncrease="true" />
       </div>
 
       <span class="font-medium">Break Time</span>
 
       <div class="flex justify-center items-center mb-3">
-        <button
-          @click="breakTime--"
-          :disabled="breakTime < 2"
-          class="bg-red-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
-        >-</button>
+        <ChangeValueButton @click="breakTime--" :isIncrease="false" :disabled="breakTime < 2" />
 
         <input
           class="bg-transparent text-center text-lg font-bold border-b w-24 p-1 mx-2 my-4"
@@ -47,20 +36,13 @@
           v-model="breakTime"
         />
 
-        <button
-          @click="breakTime++"
-          class="bg-green-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
-        >+</button>
+        <ChangeValueButton @click="breakTime++" :isIncrease="true" />
       </div>
 
       <span class="font-medium">Cycles</span>
 
       <div class="flex justify-center items-center mb-3">
-        <button
-          @click="cycles--"
-          :disabled="cycles < 2"
-          class="bg-red-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
-        >-</button>
+        <ChangeValueButton @click="cycles--" :isIncrease="false" :disabled="cycles < 2" />
 
         <input
           class="bg-transparent text-center text-lg font-bold border-b w-24 p-1 mx-2 my-4"
@@ -69,10 +51,7 @@
           v-model="cycles"
         />
 
-        <button
-          @click="cycles++"
-          class="bg-green-600 text-white font-bold flex justify-center items-center rounded w-8 h-8"
-        >+</button>
+        <ChangeValueButton @click="cycles++" :isIncrease="true" />
       </div>
 
       <button
@@ -85,14 +64,16 @@
 </template>
 
 <script>
-import Timer from "./components/Timer";
-import "./assets/css/main.css";
+import Timer from './components/Timer';
+import ChangeValueButton from './components/ChangeValueButton';
+import './assets/css/main.css';
 
 export default {
-  name: "App",
+  name: 'App',
 
   components: {
-    Timer
+    Timer,
+    ChangeValueButton
   },
 
   data() {
