@@ -6,11 +6,7 @@
       <div class="bg-white rounded w-3/4 max-w-xs p-4 z-30">
         <h3 class="text-center text-lg font-bold mb-3">It's time to warmp up. That's your exercises.</h3>
 
-        <div
-          v-for="(exercise, index) in randomExercises"
-          :key="index"
-          class="p-1 text"
-        >{{ exercise }}</div>
+        <div v-for="(exercise, index) in exercises" :key="index" class="p-1 text">{{ exercise }}</div>
       </div>
     </div>
   </div>
@@ -18,6 +14,11 @@
 
 <script>
 export default {
-  props: ["randomExercises"]
+  props: {
+    exercises: {
+      type: Array,
+      required: true
+    }
+  }
 };
 </script>

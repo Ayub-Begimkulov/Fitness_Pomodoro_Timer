@@ -14,7 +14,7 @@
 
     <exercise-modal
       v-show="showExercisesModal"
-      :randomExercises="randomExercises"
+      :exercises="randomExercises"
       @close="showExercisesModal = false"
     ></exercise-modal>
 
@@ -67,10 +67,24 @@
 </template>
 
 <script>
-import ExerciseModal from "./ExerciseModal";
+import ExerciseModal from './ExerciseModal';
 
 export default {
-  props: ["focusTime", "breakTime", "workCycles"],
+  name: 'Timer',
+  props: {
+    focusTime: {
+      type: Number,
+      required: true
+    },
+    breakTime: {
+      type: Number,
+      required: true
+    },
+    workCycles: {
+      type: Number,
+      required: true
+    }
+  },
 
   components: {
     ExerciseModal
@@ -82,29 +96,29 @@ export default {
       cycles: this.workCycles,
       secondsLeft: 0,
       isWorking: true,
-      interval: "",
+      interval: '',
       allExercises: [
-        "push up",
-        "sit up",
-        "squat",
-        "plank",
-        "jumping jacks",
-        "high knees",
-        "plank to push up",
-        "inchworm",
-        "prone walkout",
-        "wall sit",
-        "burpees",
-        "lunge",
-        "lunge jump",
-        "triceps dips",
-        "diamond push-up",
-        "flutter kick",
-        "side plank",
-        "russian twist",
-        "shoulder bridge",
-        "side plank",
-        "squat thrusts"
+        'push up',
+        'sit up',
+        'squat',
+        'plank',
+        'jumping jacks',
+        'high knees',
+        'plank to push up',
+        'inchworm',
+        'prone walkout',
+        'wall sit',
+        'burpees',
+        'lunge',
+        'lunge jump',
+        'triceps dips',
+        'diamond push-up',
+        'flutter kick',
+        'side plank',
+        'russian twist',
+        'shoulder bridge',
+        'side plank',
+        'squat thrusts'
       ],
       randomExercises: [],
       showExercisesModal: false
@@ -113,7 +127,7 @@ export default {
 
   computed: {
     circumference() {
-      return 2 * Math.PI * this.$refs.circle.getAttribute("r");
+      return 2 * Math.PI * this.$refs.circle.getAttribute('r');
     }
   },
 
@@ -123,13 +137,13 @@ export default {
 
   methods: {
     startTimer() {
-      let circle = this.$refs.circle;
-      let time = this.isWorking ? this.focusTime * 60 : this.breakTime * 60;
+      const circle = this.$refs.circle;
+      const time = this.isWorking ? this.focusTime * 60 : this.breakTime * 60;
 
       this.interval = setInterval(() => {
-        let percents = (this.secondsLeft + this.minutesLeft * 60) / time;
+        const percents = (this.secondsLeft + this.minutesLeft * 60) / time;
         circle.setAttribute(
-          "stroke-dasharray",
+          'stroke-dasharray',
           `${percents * this.circumference} ${(1 - percents) *
             this.circumference}`
         );
@@ -141,7 +155,7 @@ export default {
           this.secondsLeft = 59;
         } else {
           this.pauseTimer();
-          let audio = new Audio(require("../assets/audio/notification.mp3"));
+          const audio = new Audio(require('../assets/audio/notification.mp3'));
           audio.play();
           if (this.isWorking && this.cycles > 1) {
             this.cycles--;
@@ -157,14 +171,14 @@ export default {
 
     pauseTimer() {
       clearInterval(this.interval);
-      this.interval = "";
+      this.interval = '';
     },
 
     resetTimer() {
       this.isWorking = !this.isWorking;
       this.minutesLeft = this.isWorking ? this.focusTime : this.breakTime;
       this.$refs.circle.setAttribute(
-        "stroke-dasharray",
+        'stroke-dasharray',
         `${this.circumference} 0`
       );
     },
@@ -190,7 +204,7 @@ export default {
 
     close() {
       if (this.interval) clearInterval(this.interval);
-      this.$emit("close");
+      this.$emit('close');
     }
   }
 };
